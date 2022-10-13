@@ -1,0 +1,41 @@
+<nav class="navbar">
+    <div class="container-fluid">
+        <h2>List Display</h2>
+    </div>
+  </nav>
+  <div class="container-fluid py-3">
+    <div class="row">
+      <div class="col text-center">
+        <span *ngFor="let listItem of listObject">
+            <button class="mx-1 btn btn-primary" (click)="viewDetails(listItem.index)">{{listItem.name}}</button>
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card mt-2 mx-1" *ngIf="classDefinition === undefined">
+                <h3>Select a class above to see more details</h3>
+            </div>
+            <div class="card mt-2 mx-1" *ngIf="classDefinition !== undefined">
+                <h3>{{classDefinition.name}}</h3>
+                <p>
+                    <span class="bold">Proficiencies: </span>
+                    <span class="mx-1 badge" *ngFor="let proficiencyItem of classDefinition.proficiencies">{{proficiencyItem.name}}</span>
+                </p>
+                <p>
+                    <span class="bold">Proficiencies Additional Options (Choose {{classDefinition.proficiency_choices[0].choose}}): </span>
+                    <span class="mx-1 badge" *ngFor="let proficiencyItem of classDefinition.proficiency_choices[0].from.options">{{proficiencyItem.item.name}}</span>
+                </p>
+                <p>
+                    <span class="bold">Starting Equipment: </span>
+                    <span class="mx-1 badge" *ngFor="let equipmentItem of classDefinition.starting_equipment">{{equipmentItem.equipment.name}}</span>
+                </p>
+                <p>
+                    <span class="bold">Equipment Options: </span>
+                    <span class="mx-1 badge" *ngFor="let equipmentItem of classDefinition.starting_equipment_options">{{equipmentItem.desc}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+  </div>
